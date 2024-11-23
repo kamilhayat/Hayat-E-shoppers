@@ -1,8 +1,7 @@
-import { useEffect } from "react";
+import { React, useEffect } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-// import { useProductContext } from "./context/productcontex";
-import { useProductContext } from "./context/productcontext"
+import { useProductContext } from "./context/productcontext";
 import PageNavigation from "./components/PageNavigation";
 import MyImage from "./components/MyImage";
 import { Container } from "./styles/Container";
@@ -14,49 +13,45 @@ import AddToCart from "./components/AddToCart";
 const API = "https://api.pujakaitem.com/api/products";
 
 const SingleProduct = () => {
-  const { getSingleProduct, isSingleLoading, singleProduct } =
-    useProductContext();
-
+  const { getSingleProduct, isSingleLoading, singleProduct } = useProductContext();
   const { id } = useParams();
 
-  const {
-    id: alias,
-    name,
-    company,
-    price,
-    description,
-    stock,
-    image,
-  } = singleProduct;
-
   useEffect(() => {
-    getSingleProduct(`${API}?id=${id}`);
-  }, []);
+    if (id) {
+      const productUrl = `${API}?id=${id}`;
+      getSingleProduct(productUrl);
+    }
+    // eslint-disable-next-line 
+  }, [id]);
 
+  // Check if singleProduct is defined and has the necessary data
   if (isSingleLoading) {
     return <div className="page_loading">Loading.....</div>;
   }
+
+  // Ensure singleProduct exists before destructuring
+  if (!singleProduct) {
+    return <div>Error: Product not found</div>;
+  }
+
+  const { name, company, price, description, stock, image } = singleProduct;
 
   return (
     <Wrapper>
       <PageNavigation title={name} />
       <Container className="container">
         <div className="grid grid-two-column">
-          {/* product Images  */}
           <div className="product_images">
             <MyImage imgs={image} />
           </div>
 
-          {/* product dAta  */}
           <div className="product-data">
             <h2>{name}</h2>
-            {/* <Star stars={stars} reviews={reviews} /> */}
-
             <p className="product-data-price">
               Price: <FormatPrice price={price} />
             </p>
-
             <p>{description}</p>
+
             <div className="product-data-warranty">
               <div className="product-warranty-data">
                 <TbTruckDelivery className="warranty-icon" />
@@ -70,26 +65,25 @@ const SingleProduct = () => {
 
               <div className="product-warranty-data">
                 <TbTruckDelivery className="warranty-icon" />
-                <p>Hayat Delivered </p>
+                <p>Hayat Delivered</p>
               </div>
 
               <div className="product-warranty-data">
                 <MdSecurity className="warranty-icon" />
-                <p>2 Year Warranty </p>
+                <p>2 Year Warranty</p>
               </div>
             </div>
 
             <div className="product-data-info">
               <p>
                 Available:
-                <span> {stock > 0 ? "In Stock" : "Not Available"}</span>
+                <span>{stock > 0 ? "In Stock" : "Not Available"}</span>
               </p>
-
               <p>
-                Brand :<span> {company} </span>
+                Brand: <span>{company}</span>
               </p>
             </div>
-            <hr/>
+            <hr />
             {stock > 0 && <AddToCart product={singleProduct} />}
           </div>
         </div>
@@ -143,9 +137,7 @@ const Wrapper = styled.section`
     .product-data-price {
       font-weight: bold;
     }
-    .product-data-real-price {
-      color: ${({ theme }) => theme.colors.btn};
-    }
+
     .product-data-info {
       display: flex;
       flex-direction: column;
@@ -160,16 +152,8 @@ const Wrapper = styled.section`
     hr {
       max-width: 100%;
       width: 90%;
-      /* height: 0.2rem; */
       border: 0.1rem solid #000;
-      color: red;
     }
-  }
-
-  .product-images {
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
   .page_loading {
@@ -178,6 +162,7 @@ const Wrapper = styled.section`
     justify-content: center;
     align-items: center;
   }
+
   @media (max-width: ${({ theme }) => theme.media.mobile}) {
     padding: 0 2.4rem;
   }

@@ -20,7 +20,7 @@ const Product = (curElem) => {
         </div>
       </div>
     </NavLink>
-  );
+  );  
 };
 
 export default Product;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Button } from "../styles/Button";
 
 const HeroSection = ({ myData }) => {
-  const  {name}  = myData;
+  const { name } = myData;
 
   return (
     <Wrapper>
@@ -13,22 +13,27 @@ const HeroSection = ({ myData }) => {
             <p className="intro-data">Welcome to </p>
             <h1> {name} </h1>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias
-              atque temporibus veniam doloribus libero ad error omnis voluptates
-              animi! Suscipit sapiente.
+              Welcome to our e-commerce platform, your one-stop destination for a seamless shopping experience. Our website is designed to bring convenience, variety, and quality to your fingertips. Whether you're searching for the latest gadgets, stylish apparel we have you covered with an extensive range of categories.
+
+              Our platform features a user-friendly interface that allows for smooth navigation, product discovery, and a personalized shopping experience. With detailed product pages, multiple high-quality images, and advanced filtering options, you can easily find products that meet your needs.
+
+              We are committed to delivering excellence, whether it's through our responsive customer service, reliable delivery system, or flexible return and exchange policies. Explore our site and enjoy features like grid and list views, advanced search filters, and the ability to save your favorites in a wish list. At our core, we aim to blend technology and convenience to redefine online shopping.
+
+              Join us in creating a world of effortless shopping and discover why we're the preferred choice for so many customers
             </p>
-            <NavLink>
+            <NavLink to="/products">
               <Button>show now</Button>
             </NavLink>
           </div>
-          {/* our homepage image  */}
+
           <div className="hero-section-image">
             <figure>
               <img
+             
                 src="images/home.jpg"
-                alt="hero-section-photo"
+                alt="hero section showcasing e-commerce platform"
                 className="img-style"
-              />
+                />
             </figure>
           </div>
         </div>

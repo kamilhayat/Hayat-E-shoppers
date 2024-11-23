@@ -87,6 +87,14 @@ ${"" /* resuable code section  */}
 .container {
   max-width: 120rem;
   margin: 0 auto;
+  
+}
+
+.container2 {
+  max-width: 120rem;
+  margin: 0 auto;
+  margin-top:25px;
+  
 }
 
 .grid {
@@ -113,6 +121,7 @@ ${"" /* resuable code section  */}
   .common-heading {
       font-size: 3.8rem;
       font-weight: 600;
+      margin-top:0.5rem;
       margin-bottom: 6rem;
       text-transform: capitalize;
     }

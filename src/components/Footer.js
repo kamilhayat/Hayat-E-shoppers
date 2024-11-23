@@ -1,183 +1,200 @@
 import React from "react";
-import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { Button } from "../styles/Button";
-import { FaDiscord, FaInstagram, FaYoutube, FaFacebook, FaLinkedin } from "react-icons/fa";
+import styled from "styled-components";
+import { FaInstagram, FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <>
-      <Wrapper>
-        <section className="contact-short">
-          <div className="grid grid-two-column">
-            <div>
-              <h3>Ready to get started?</h3>
-              <h3>Talk to us today</h3>
-            </div>
+    <Wrapper>
+      <footer>
+        <div className="footer-section logo-section">
+          <NavLink to='/'>
+            <img className="logo" src="./images/logo2.png" alt="Logo" />
 
-            <div>
-              <Button className="btn hireme-btn">
-                <NavLink to="/"> Get Started </NavLink>
-              </Button>
-            </div>
-          </div>
-        </section>
-        {/* footer section */}
-
-        <footer>
-          <div className="container grid grid-four-column">
-            <div className="footer-about">
-              <img src="./images/logo2.png" className="foot-logo" alt="" />
-            </div>
-            <div className="footer-subscribe">
-              <h3>Subscribe to get important updates</h3>
-              <form action="#">
-                <input type="email" name="email" placeholder="YOUR E-MAIL" />
-
-                <input type="submit" value="subscribe" />
-              </form>
-            </div>
-            <div className="footer-social">
-              <h3>Follow Us</h3>
-              <div className="footer-social--icons">
-                <div>
-                  <a
-                    href="https://www.linkedin.com/in/kamil-hayat"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <FaLinkedin className="icons"></FaLinkedin>
-                  </a>
-                </div>
-                <div>
-                  <a href="https://instagram.com/__kamil___hayat___?igshid=ZDdkNTZiNTM="
-                    rel="noreferrer"
-                    target="_blank">
-
-                    <FaInstagram className="icons" />
-                  </a>
-                </div>
-                <div>
-                  <a
-                    href="https://www.facebook.com/kamil.hayat.562?mibextid=ZbWKwL"
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-
-                    <FaFacebook className='icons'></FaFacebook>
-                  </a>
-                </div>
-
-              </div>
-            </div>
-            <div className="footer-contact">
-              <h3>Call Us</h3>
-              <h3>+91 9931191824</h3>
+          </NavLink>
+          <h4>Contact</h4>
+          <p><strong>Address:</strong> Abul Fazal Enclave, New Delhi</p>
+          <p><strong>Phone:</strong> +01 2222 365 / +91-1234567890</p>
+          <p><strong>Hours:</strong> Mon-Sat 10:00 - 18:00</p>
+          <div className="social">
+            <h4>Follow Us</h4>
+            <div className="social-icons">
+              <a className="facebook" href="https://www.facebook.com/kamil.hayat.562?mibextid=ZbWKwL" target="_blank" rel="noreferrer">
+                < FaFacebook />
+              </a>
+              <a className="twitter" href="https://twitter.com/Kamilhayat19?t=xSKFMpgkbqhcYvbCfO4KaA&s=09" target="_blank" rel="noreferrer">
+                <FaTwitter />
+              </a>
+              <a className="instagram" href="https://instagram.com/__kamil___hayat___?igshid=ZDdkNTZiNTM=" target="_blank" rel="noreferrer">
+                <FaInstagram />
+              </a>
+              <a className="linkedin" href="https://www.linkedin.com/in/kamil-hayat" target="_blank" rel="noreferrer">
+                <FaLinkedin />
+              </a>
             </div>
           </div>
+        </div>
 
-          <div className="footer-bottom--section">
-            <hr />
-            <div className="container grid grid-two-column ">
-              <p>
-                @{new Date().getFullYear()} HayatShoppers. All Rights Reserved
-              </p>
-              <div>
-                <p>PRIVACY POLICY</p>
-                <p>TERMS & CONDITIONS</p>
-              </div>
-            </div>
-          </div>
-        </footer>
-      </Wrapper>
-    </>
+        <div className="footer-section links-section">
+          <h4>About</h4>
+          <NavLink to="/about">About Us</NavLink>
+          <NavLink to="#">Delivery Information</NavLink>
+          <NavLink to="#">Privacy Policy</NavLink>
+          <NavLink to="#">Terms & Conditions</NavLink>
+          <NavLink to="/contact">Contact Us</NavLink>
+        </div>
+
+        <div className="footer-section links-section">
+          <h4>My Account</h4>
+          <NavLink to="/cart">View Cart</NavLink>
+          <NavLink to="#">My Wishlist</NavLink>
+          <NavLink to="#">Track My Order</NavLink>
+          <NavLink to="#">Help</NavLink>
+        </div>
+
+        <div className="footer-section payment-section">
+          <h4>Secured Payment Gateway</h4>
+          <img src="./images/payment-methods.png" alt="Payment Methods" />
+        </div>
+      </footer>
+      <div className="copyright">
+        <p>@{new Date().getFullYear()} www.Eshoppers.com All rights reserved.</p>
+      </div>
+    </Wrapper>
   );
 };
 
-const Wrapper = styled.section`
-  .iSIFGq {
-    margin: 0;
-  }
-.foot-logo{
-  width:8rem;
-  margin-top:-15vh;
-  margin-left:-15vh;
-  left:0;
-
-}
-  .contact-short {
-    max-width: 55vw;
-    margin: auto;
-    padding: 5rem 10rem;
-    background-color: ${({ theme }) => theme.colors.bg};
-    border-radius: 1rem;
-    box-shadow: ${({ theme }) => theme.colors.shadowSupport};
-    transform: translateY(50%);
-
-    .grid div:last-child {
-      justify-self: end;
-      align-self: center;
-    }
-  }
-
+const Wrapper = styled.div`
   footer {
-    height:65vh;
-    padding: 14rem 0 9rem 0;
-    background-color: ${({ theme }) => theme.colors.footer_bg};
-    h3 {
-      color: ${({ theme }) => theme.colors.hr};
-      margin-bottom: 2.4rem;
-    }
-    p {
-      color: ${({ theme }) => theme.colors.white};
-    }
-    .footer-social--icons {
-      display: flex;
-      gap: 2rem;
-
-      div {
-        padding: 1rem;
-        border-radius: 50%;
-        border: 2px solid ${({ theme }) => theme.colors.white};
-
-        .icons {
-          color: ${({ theme }) => theme.colors.white};
-          font-size: 2.4rem;
-          position: relative;
-          cursor: pointer;
-        }
-      }
-    }
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: #2e3b4e; 
+    color: #f3f4f6;
+    padding: 2rem 5%;
+    position: relative;
   }
 
-  .footer-bottom--section {
-    padding-top: 9rem;
+  .footer-section {
+    flex: 1 1 200px;
+    margin: 1rem;
+    
+  }
+    
 
-    hr {
-      margin-bottom: 2rem;
-      color: ${({ theme }) => theme.colors.hr};
-      height: 0.1px;
-    }
+  .logo-section img {
+    max-width: 150px;
+    margin-bottom: 1rem;
   }
 
-  @media (max-width: ${({ theme }) => theme.media.mobile}) {
-    .contact-short {
-      max-width: 80vw;
-      margin: 4.8rem auto;
-      transform: translateY(0%);
-      text-align: center;
+  .logo-section h4 {
+    margin-top: 1rem;
+    color: #26a69a;
+  }
 
-      .grid div:last-child {
-        justify-self: center;
-      }
+.social {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  margin-top: 2rem;
+}
+    .social h4,
+    footer-section, h4 {
+    margin-bottom: 2rem;
+    font-size:1.3rem;
+    color: #f3f4f6;
     }
 
+ .social-icons {
+  display: flex;
+  gap: 1.9rem;
+  height:2.8rem;
+  justify-content: center;
+  font-size: 1.9rem;
+}
+
+ .social-icons a {
+  transition: transform 0.3s ease;
+}
+
+  .social-icons a:hover {
+  transform: scale(1.2); 
+}
+
+
+.social-icons .facebook {
+  color: #1877f2; 
+}
+
+.social-icons .twitter {
+  color: #1da1f2; 
+}
+
+.social-icons .instagram {
+  color: #e1306c;
+}
+
+.social-icons .linkedin {
+  color: #0077b5; 
+}
+
+  .links-section h4 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #26a69a;
+  }
+
+  .links-section a {
+    display: block;
+    color: #90caf9;
+    margin-bottom: 1.5rem;
+    text-decoration: none;
+    font-size: 1.3rem;
+    transition: color 0.3s;
+  }
+
+  .links-section a:hover {
+    color: #ff6e40;
+  }
+
+  .payment-section h4 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #26a69a;
+  }
+
+  .payment-section img {
+    max-width: 100%;
+    margin-top: 1rem;
+    border: 2px solid #ff6e40; 
+  border-radius: 10px;
+  }
+
+ .copyright {
+  text-align: center;
+  padding: 1rem 0;
+  color: #90caf9; 
+  font-size: 0.9rem;
+  border-top: 1px solid #ff6e40; 
+}
+
+
+  @media (max-width: 768px) {
     footer {
-      padding: 9rem 0 9rem 0;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
 
-    .footer-bottom--section {
-      padding-top: 4.8rem;
+    .footer-section {
+      flex: none;
+      width: 100%;
+    }
+
+    .social-icons {
+      justify-content: center;
     }
   }
 `;

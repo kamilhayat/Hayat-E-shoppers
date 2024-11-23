@@ -38,9 +38,10 @@ const Contact = () => {
       <h2 className="common-heading">Contact page</h2>
 
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d28863.352452930674!2d85.0856722!3d25.2733082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1698654271462!5m2!1sen!2sin"
+        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7008.973832985971!2d77.29634909999996!3d28.55513789999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1732367527040!5m2!1sen!2sin"
         width="100%"
         height="400"
+        title="contact form page"
         style={{ border: 0 }}
         allowFullScreen=""
         loading="lazy"
@@ -49,7 +50,7 @@ const Contact = () => {
       <div className="container">
         <div className="contact-form">
           <form
-            action="https://formspree.io/f/xeqdgwnq"
+            action="https://formspree.io/f/xnnqbqdb"
             method="POST"
             className="contact-inputs">
             <input
