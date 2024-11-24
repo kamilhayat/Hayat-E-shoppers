@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import About from "./About";
 import Home from "./Home";
 import Products from "./Products";
@@ -13,7 +15,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ScrollToTop from "./ScrollToTop";
 import Login from "./components/Login";
-
+import Signup from "./components/Signup";
+import UserPage from "./components/UserPage";
 const App = () => {
   const theme = {
     colors: {
@@ -45,6 +48,8 @@ const App = () => {
       <Router>
         <GlobalStyle />
       <Header />
+      <ToastContainer position="top-right" autoClose={3000} />
+
       <ScrollToTop/>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -52,6 +57,8 @@ const App = () => {
           <Route path="/products" element={<Products />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/user' element={<UserPage />} />
           <Route path="/singleproduct/:id" element={<SingleProduct />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<ErrorPage />} />

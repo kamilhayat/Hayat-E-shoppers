@@ -5,7 +5,7 @@ import { FaInstagram, FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <Wrapper>
+    <Wrapper>pag
       <footer>
         <div className="footer-section logo-section">
           <NavLink to='/'>

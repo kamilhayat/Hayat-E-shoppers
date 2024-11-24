@@ -8,8 +8,7 @@ import { useCartContext } from "../context/cart_context";
 const AddToCart = ({ product }) => {
   const { addToCart } = useCartContext();
 
-  const { id, stock } = product || {}; // Added fallback for undefined product
-  // const [color, setColor] = useState(colors ? colors[0] : ""); // Ensure colors exist
+  const { id, stock } = product || {}; 
   const [amount, setAmount] = useState(1);
 
   const setDecrease = () => {
@@ -21,7 +20,7 @@ const AddToCart = ({ product }) => {
   };
 
   if (!product || !id  || stock === undefined) {
-    return <div>Product data is not available.</div>; // Handle missing product data
+    return <div>Product data is not available.</div>;
   }
 
   return (

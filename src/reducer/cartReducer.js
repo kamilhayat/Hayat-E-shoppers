@@ -1,13 +1,11 @@
 const cartReducer = (state, action) => {
-  // Helper function to update product amount
   const updateProductAmount = (id, delta) => {
     return state.cart.map((curElem) => {
       if (curElem.id === id) {
         let newAmount = curElem.amount + delta;
 
-        // Ensure amount is between 1 and max (prevent decrementing below 1)
-        newAmount = Math.max(1, newAmount); // Ensure it doesn't go below 1
-        newAmount = Math.min(newAmount, curElem.max); // Ensure it doesn't exceed the max stock
+        newAmount = Math.max(1, newAmount);
+        newAmount = Math.min(newAmount, curElem.max); 
 
         return { ...curElem, amount: newAmount };
       }
@@ -18,7 +16,7 @@ const cartReducer = (state, action) => {
   switch (action.type) {
     case "ADD_TO_CART": {
       const { id, amount, product } = action.payload;
-      const uniqueId = id; // Removed color as part of unique ID
+      const uniqueId = id;
       const existingProduct = state.cart.find((item) => item.id === uniqueId);
 
       if (existingProduct) {

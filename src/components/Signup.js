@@ -1,60 +1,37 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { auth } from "../firebaseConfiq";
 import styled from "styled-components";
 import { toast } from "react-toastify";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-const Login = () => {
+const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const googleProvider = new GoogleAuthProvider();
 
-  const handleLogin = async (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
     setError(null);
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      if (user.emailVerified) {
-        toast.success("Login successful! Redirecting to home...");
-        navigate("/");
-      } else {
-        toast.error("Please verify your email before logging in.");
-      }
-    } catch (err) {
-      setError(err.message);
-    }
-  };
+      await sendEmailVerification(user);
+      toast.success("Signup successful! A verification email has been sent to your email address.");
 
-  const handleGoogleSignIn = async () => {
-    try {
-      const result = await signInWithPopup(auth, googleProvider);
-      const user = result.user;
-  
-      if (user) {
-        toast.success("Login successful with Google! Redirecting to home...");
-        setTimeout(() => {
-          navigate("/");
-        }, 1000);
-      }
+      navigate("/login");
     } catch (err) {
       setError(err.message);
-      toast.error("Failed to sign in with Google.");
     }
   };
-  
 
   return (
     <Wrapper>
       <div className="form-container">
-        <h2>Login</h2>
+        <h2>Signup</h2>
         {error && <p className="error">{error}</p>}
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleSignup}>
           <input
             type="email"
             placeholder="Email"
@@ -69,21 +46,15 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <button type="submit">Login</button>
+          <button type="submit">Sign Up</button>
         </form>
-        <button className="google-btn" onClick={handleGoogleSignIn}>
-          Sign in with Google
-        </button>
         <div className="login-link">
-          Don't have an account? <a href="/signup">Sign Up</a>
+          Already have an account? <a href="/login">Login</a>
         </div>
       </div>
-      <ToastContainer position="top-right" autoClose={3000} />
-
     </Wrapper>
   );
 };
-
 
 
 
@@ -93,9 +64,10 @@ const Wrapper = styled.section`
   align-items: center;
   min-height: 100vh;
 
+
   .form-container {
     background: #fff;
-    padding: 4rem;
+    padding: 3rem;
     border-radius: 12px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
     text-align: center;
@@ -103,7 +75,7 @@ const Wrapper = styled.section`
     width: 100%;
 
     h2 {
-      margin-bottom: 1.8rem;
+      margin-bottom: 1.5rem;
       font-size: 2.2rem;
       color: #333;
       font-weight: bold;
@@ -118,7 +90,7 @@ const Wrapper = styled.section`
     form {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 1.2rem;
 
       input {
         padding: 0.9rem;
@@ -156,14 +128,22 @@ const Wrapper = styled.section`
       }
     }
 
+    .social-login {
+      margin-top: 1.5rem;
 
-      .google-btn {
+      p {
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        color: #555;
+      }
+
+      .google-btn,
+      .facebook-btn {
         padding: 0.9rem;
         border: none;
         border-radius: 6px;
         cursor: pointer;
         font-size: 1rem;
-        margin:1.2rem 0;
         font-weight: bold;
         width: 100%;
         margin-bottom: 1rem;
@@ -195,15 +175,15 @@ const Wrapper = styled.section`
           background-color: #365899;
         }
       }
-    
+    }
 
-    .signup-link {
+    .login-link {
       margin-top: 1rem;
       font-size: 1rem;
       color: #666;
 
       a {
-        color: #2575fc;
+        color: #6a11cb;
         text-decoration: none;
         font-weight: bold;
 
@@ -222,4 +202,6 @@ const Wrapper = styled.section`
 `;
 
 
-export default Login;
+
+
+export default Signup;

@@ -4,17 +4,41 @@ import styled from "styled-components";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgMenu, CgClose } from "react-icons/cg";
 import { useCartContext } from "../context/cart_context";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../firebaseConfiq";
+import { toast } from 'react-toastify';
 
 
 const Nav = () => {
   const [menuIcon, setMenuIcon] = useState();
-  const {total_item}= useCartContext();
+  const { total_item } = useCartContext();
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    if (auth.currentUser) {
+      await auth.signOut();
+      toast.success("You have successfully logged out!");
+      navigate("/login");
+    }
+  };
 
   const Nav = styled.nav`
     .navbar-lists {
       display: flex;
       gap: 4.8rem;
       align-items: center;
+
+      .navbar-link-toggle{
+          cursor: pointer;
+          border: none !important;
+          display: inline-block;
+          text-decoration: none;
+          font-size: 1.8rem;
+          font-weight: 500;
+          text-transform: uppercase;
+          color: ${({ theme }) => theme.colors.black};
+          transition: color 0.3s linear;
+          background-color: transparent;
+      }
 
       .navbar-link {
         &:link,
@@ -209,6 +233,27 @@ const Nav = () => {
             </NavLink>
           </li>
           <li>
+            <NavLink
+              to="/user"
+              className="navbar-link "
+              onClick={() => setMenuIcon(false)}>
+              User
+            </NavLink>
+          </li>
+          <li>
+            <button
+              onClick={handleLogout}
+              className="navbar-link-toggle "
+              disabled={!auth.currentUser} 
+              style={{
+                opacity: auth.currentUser ? 1 : 0.5,
+                cursor: auth.currentUser ? "pointer" : "not-allowed",
+              }}
+            >
+              Logout
+            </button>
+          </li>
+          <li>
             <NavLink to="/cart" className="navbar-link cart-trolley--link">
               <FiShoppingCart className="cart-trolley" />
               <span className="cart-total--item"> {total_item} </span>
@@ -216,7 +261,6 @@ const Nav = () => {
           </li>
         </ul>
 
-        {/* two button for open and close of menu */}
         <div className="mobile-navbar-btn">
           <CgMenu
             name="menu-outline"

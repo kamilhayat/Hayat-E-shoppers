@@ -24,12 +24,10 @@ const SingleProduct = () => {
     // eslint-disable-next-line 
   }, [id]);
 
-  // Check if singleProduct is defined and has the necessary data
   if (isSingleLoading) {
     return <div className="page_loading">Loading.....</div>;
   }
 
-  // Ensure singleProduct exists before destructuring
   if (!singleProduct) {
     return <div>Error: Product not found</div>;
   }

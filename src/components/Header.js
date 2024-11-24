@@ -26,7 +26,6 @@ const MainHeader = styled.header`
   top: 0;           /* Stick to the top */
   width: 100%;      /* Ensure it spans the full width */
   z-index: 1000;    /* Ensure it stays above other content */
-  // box-shadow: 0 4px 2px -2px gray;
 
   .logo {
     height: 6rem;

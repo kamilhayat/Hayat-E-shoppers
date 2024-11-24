@@ -58,7 +58,6 @@ const Wrapper = styled.section`
     align-items: center;
     flex-direction: column;
     background-image: url(../images/banner.png);
-    // padding: 14px;
     width: 100%;
     height: 40vh;
     background-size: cover;

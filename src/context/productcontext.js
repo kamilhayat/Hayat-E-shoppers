@@ -54,7 +54,7 @@ const AppProvider = ({ children }) => {
   );
 };
 
-// Custom hook
+
 const useProductContext = () => {
   return useContext(AppContext);
 };
