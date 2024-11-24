@@ -1,4 +1,4 @@
-import { React, useEffect } from "react";
+import React, {  useEffect } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { useProductContext } from "./context/productcontext";
@@ -21,7 +21,7 @@ const SingleProduct = () => {
       const productUrl = `${API}?id=${id}`;
       getSingleProduct(productUrl);
     }
-    // eslint-disable-next-line 
+    // eslint-disable-next-line
   }, [id]);
 
   if (isSingleLoading) {
@@ -32,7 +32,8 @@ const SingleProduct = () => {
     return <div>Error: Product not found</div>;
   }
 
-  const { name, company, price, description, stock, image } = singleProduct;
+  const { name, company, price, description, stock, image = [] } = singleProduct;
+  const firstImage = image[0]?.url;  
 
   return (
     <Wrapper>
@@ -40,7 +41,11 @@ const SingleProduct = () => {
       <Container className="container">
         <div className="grid grid-two-column">
           <div className="product_images">
-            <MyImage imgs={image} />
+            {firstImage ? (
+              <MyImage imgs={[{ url: firstImage }]} />
+            ) : (
+              <p>No image available</p>
+            )}
           </div>
 
           <div className="product-data">
