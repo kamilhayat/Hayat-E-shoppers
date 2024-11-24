@@ -34,7 +34,7 @@ const Cart = () => {
         </div>
         <hr />
         <div className="cart-two-button">
-          <NavLink to="/products">
+          <NavLink to="/deleverypage">
             <Button> proceed </Button>
           </NavLink>
           <Button className="btn btn-clear" onClick={clearCart}>

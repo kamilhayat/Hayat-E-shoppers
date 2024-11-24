@@ -17,6 +17,7 @@ import ScrollToTop from "./ScrollToTop";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import UserPage from "./components/UserPage";
+import DeliveryPage from "./components/DeliveryPage";
 const App = () => {
   const theme = {
     colors: {
@@ -61,6 +62,7 @@ const App = () => {
           <Route path='/user' element={<UserPage />} />
           <Route path="/singleproduct/:id" element={<SingleProduct />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/deleverypage" element={<DeliveryPage/>} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
         <Footer />
