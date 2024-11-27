@@ -28,19 +28,18 @@
   };
 
   const Wrapper = styled.section`
-  /* Add padding-top to avoid content being hidden behind the navbar */
-  padding-top: 10rem; /* This should match the header height */
+  padding-top: 10rem; 
   margin-left: 10rem;
 
   .grid-filter-column {
-    display: grid; /* Ensure the display is set */
-    grid-template-columns: 0.2fr 1fr; /* Define the grid columns */
-    gap: 1rem; /* Space between grid items */
+    display: grid; 
+    grid-template-columns: 0.2fr 1fr; 
+    gap: 1rem; 
   }
 
   @media (max-width: ${({ theme }) => theme.media.mobile}) {
     .grid-filter-column {
-      grid-template-columns: 1fr; /* Stack on smaller screens */
+      grid-template-columns: 1fr;
     }
   }
 `;

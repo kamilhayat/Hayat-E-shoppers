@@ -1,4 +1,4 @@
-import React from "react";
+import {React} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -19,6 +19,7 @@ import Signup from "./components/Signup";
 import UserPage from "./components/UserPage";
 import DeliveryPage from "./components/DeliveryPage";
 const App = () => {
+  
   const theme = {
     colors: {
       heading: "rgb(24 24 29)",

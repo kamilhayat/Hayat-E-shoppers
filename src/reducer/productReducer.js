@@ -1,6 +1,4 @@
 const ProductReducer = (state, action) => {
-
-
   switch (action.type) {
     case "SET_LOADING":
       return {
@@ -9,10 +7,7 @@ const ProductReducer = (state, action) => {
       };
 
     case "SET_API_DATA":
-      const featureData = action.payload.filter((curElem) => {
-        return curElem.featured === true;
-      });
-
+      const featureData = action.payload.filter((curElem) => curElem.featured === true);
       return {
         ...state,
         isLoading: false,
@@ -26,7 +21,8 @@ const ProductReducer = (state, action) => {
         isLoading: false,
         isError: true,
       };
-    case "SET_SINGLE_ERROR":
+
+    case "SET_SINGLE_LOADING":
       return {
         ...state,
         isSingleLoading: true,
@@ -38,8 +34,6 @@ const ProductReducer = (state, action) => {
         isSingleLoading: false,
         singleProduct: action.payload,
       };
-      
- 
 
     default:
       return state;

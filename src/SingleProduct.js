@@ -19,6 +19,7 @@ const SingleProduct = () => {
   useEffect(() => {
     if (id) {
       const productUrl = `${API}?id=${id}`;
+      
       getSingleProduct(productUrl);
     }
     // eslint-disable-next-line
