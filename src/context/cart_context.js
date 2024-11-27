@@ -5,12 +5,9 @@ const CartContext = createContext();
 
 const getLocalCartData = () => {
     let localCartData = localStorage.getItem("hayatCart");
-    // eslint-disable-next-line
-    if (localCartData == []) {
-        return [];
-    } else {
-        return JSON.parse(localCartData);
-    }
+    const parsedData = JSON.parse(localCartData);
+    if(!Array.isArray(parsedData)) return [];
+    return parsedData; 
 };
 
 const initialState = {
