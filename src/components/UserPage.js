@@ -1,38 +1,43 @@
-import React, {useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useAuth } from "../context/auth_context";
 
 const UserPage = () => {
-    const { user } = useAuth();  
-    const navigate = useNavigate();
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        if (!user) {
-            navigate("/login");  
-        }
-    }, [user, navigate]);
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user, navigate]);
 
-    if (!user) return <div>Loading...</div>;
+  if (!user) return <div>Loading...</div>;
 
-    return (
-        <Wrapper>
-            <div className="user-page">
-                {user ? (
-                    <div className="user-info">
-                        <h1>User Details</h1>
-                        <p><strong>Email:</strong> {user.email}</p>
-                        <p><strong>Display Name:</strong> {user.displayName || "N/A"}</p>
-                        <p><strong>Provider:</strong> {user.providerId === "google.com" ? "Google" : "Email/Password"}</p>
-                        <p><strong>User ID:</strong> {user.uid}</p>
-                        <img src={user.photoURL} alt="Profile" />
-                    </div>
-                ) : (
-                    <p>Loading...</p>
-                )}
-            </div>
-        </Wrapper>
-    );
+  return (
+    <Wrapper>
+      <div className="user-page">
+        {user ? (
+          <div className="user-info">a
+            <h1>User Details</h1>
+            <p><strong>Email:</strong> {user.email}</p>
+            <p><strong>Display Name:</strong> {user.displayName || "N/A"}</p>
+            <p><strong>Provider:</strong> {user.providerId === "google.com" ? "Google" : "Email/Password"}</p>
+            <p><strong>User ID:</strong> {user.uid}</p>
+            <img
+              src={user?.photoURL || "/default-profile.png"} 
+              alt="Profile"
+              style={{ width: "100px", height: "100px", borderRadius: "50%" }} 
+            />
+
+          </div>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.section`
